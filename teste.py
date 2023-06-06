@@ -1,7 +1,7 @@
 from os import system
 from colorama import init, Fore, Back, Style
-from getpass import getpass
 import stdiomask
+import json
 from time import sleep
 init(autoreset=True)
 
@@ -24,16 +24,11 @@ def fazer_login():
 
 def buscar_usuario(login, senha):
     try:
-        with open('usuarios.txt', 'r', encoding='utf-8') as arquivo_usuarios:
-            for linha in arquivo_usuarios:
-                linha = linha.strip()
-                if linha:
-                    usuario = linha.split()
-                    if len(usuario) == 2:
-                        username = usuario[0]
-                        password = usuario[1]
-                        if login == username and senha == password:
-                            return {'login': username, 'senha': password}
+        with open('usuarios.json', 'r', encoding='utf-8') as arquivo_usuarios:
+            usuarios = json.load(arquivo_usuarios)
+            usuario = usuarios.get(login)
+            if usuario and usuario['senha'] == senha:
+                return {'login': login, 'senha': senha}
     except FileNotFoundError:
         return None
 
@@ -42,15 +37,10 @@ def buscar_usuario(login, senha):
 
 def buscar_usuario_para_cadastro(login):
     try:
-        with open('usuarios.txt', 'r', encoding='utf-8') as arquivo_usuarios:
-            for linha in arquivo_usuarios:
-                linha = linha.strip()
-                if linha:
-                    usuario = linha.split()
-                    if len(usuario) == 2:
-                        username = usuario[0]
-                        if login == username:
-                            return True
+        with open('usuarios.json', 'r', encoding='utf-8') as arquivo_usuarios:
+            usuarios = json.load(arquivo_usuarios)
+            if login in usuarios:
+                return True
     except FileNotFoundError:
         return False
 
@@ -79,31 +69,29 @@ def adicionar_dados_artista(emprego, genero_musical, integrantes_da_banda, nome_
     dado = {'emprego': emprego, 'genero_musical': genero_musical, 'integrantes_da_banda': integrantes_da_banda,
             'nome_da_banda': nome_da_banda, 'bio': bio, 'link': link}
     dados.append(dado)
-    arquivo_dados = open('dados.txt', 'a', encoding='utf8')
-    arquivo_dados.write(str(dado) + '\n')
-    arquivo_dados.close()
+    with open('dados.json', 'a', encoding='utf8') as arquivo_dados:
+        json.dump(dado, arquivo_dados)
+        arquivo_dados.write('\n')
 
 
 def adicionar_dados_contratante(emprego, genero_musical, nome_do_estabelecimento, nome_do_contratante, endereco):
     dado = {'emprego': emprego, 'genero_musical': genero_musical, 'nome_do_estabelecimento': nome_do_estabelecimento,
             'nome_do_contratante': nome_do_contratante, 'endereco': endereco}
     dados.append(dado)
-    arquivo_dados = open('dados.txt', 'a', encoding='utf8')
-    arquivo_dados.write(str(dado) + '\n')
-    arquivo_dados.close()
+    with open('dados.json', 'a', encoding='utf8') as arquivo_dados:
+        json.dump(dado, arquivo_dados)
+        arquivo_dados.write('\n')
 
 
 def varredura_de_oportunidades(usuario_atual):
     emprego_usuario_atual = usuario_atual['emprego']
     genero_musical_usuario_atual = usuario_atual['genero_musical']
     oportunidades = []
-    with open('dados.txt', 'r', encoding='utf-8') as arquivo_dados:
+    with open('dados.json', 'r', encoding='utf-8') as arquivo_dados:
         for linha in arquivo_dados:
-            linha = linha.strip()
-            if linha:
-                dados_usuario = eval(linha)
-                if dados_usuario['emprego'] == 'C' and dados_usuario['genero_musical'] == genero_musical_usuario_atual:
-                    oportunidades.append(dados_usuario)
+            dados_usuario = json.loads(linha)
+            if dados_usuario['emprego'] == 'C' and dados_usuario['genero_musical'] == genero_musical_usuario_atual:
+                oportunidades.append(dados_usuario)
     return oportunidades
 
 
@@ -156,36 +144,51 @@ while True:
                 print()
                 sleep(2)
             else:
-                with open('usuarios.txt', 'a+', encoding='Utf_8', newline='') as arquivo_usuarios:
-                    arquivo_usuarios.writelines(f'{login} {senha}\n')
+                with open('usuarios.json', 'a+', encoding='utf-8') as arquivo_usuarios:
+                    usuarios = {}
+                    if arquivo_usuarios.tell() != 0:
+                        arquivo_usuarios.seek(0)
+                        usuarios = json.load(arquivo_usuarios)
+                    usuarios[login] = {'senha': senha}
+                    arquivo_usuarios.seek(0)
+                    json.dump(usuarios, arquivo_usuarios)
+                    arquivo_usuarios.truncate()
                     while True:
                         emprego = input(Fore.YELLOW + 'Você é [A] artista ou [C] contratante?\t').upper()
                         if emprego == "A":
                             nome_da_banda = input(Fore.YELLOW + 'Qual o nome da sua banda ?\t')
-                            genero_musical = input(Fore.YELLOW + 'Qual genero musical sua banda toca?\t')
+                            genero_musical = input(Fore.YELLOW + 'Qual gênero musical sua banda toca?\t')
                             integrantes_da_banda = input(Fore.YELLOW + 'Defina os integrantes da banda incluindo você:\t')
                             bio = input(Fore.YELLOW + 'Deixe uma breve biografia:\t')
-                            link = input(Fore.YELLOW + 'Insira um link de uma musica sua:\t')
+                            link = input(Fore.YELLOW + 'Insira um link de uma música sua:\t')
                             adicionar_dados_artista(emprego, genero_musical, integrantes_da_banda, nome_da_banda, bio, link)
                             break
                         elif emprego == "C":
                             nome_do_estabelecimento = input(Fore.YELLOW + 'Qual o nome do seu estabelecimento ?\t')
                             nome_do_contratante = input(Fore.YELLOW + 'Qual o seu nome?\t')
-                            endereco = input(Fore.YELLOW + 'Insira o endereço do seu estabelecimento:\t')
+                            endereco = input(Fore.YELLOW + 'Qual o endereço do estabelecimento?\t')
                             adicionar_dados_contratante(emprego, genero_musical, nome_do_estabelecimento, nome_do_contratante, endereco)
                             break
                         else:
-                            print(Fore.RED + 'Resposta inválida, digite A para artista ou C para contratante')
-                            sleep(1)
-                print()
-                print(Fore.CYAN + 'Cadastro realizado com sucesso!')
-                print()
-                sleep(2)
+                            sleep(2)
+                            print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [A] ou [C]''')
+                            print()
+                    print()
+                    print(Fore.CYAN + 'Cadastro realizado com sucesso!')
+                    print()
         elif opcao == 3:  # Sair
             break
         else:
             sleep(2)
             print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
+            print()
     except ValueError:
         sleep(2)
         print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
+        print()
+    except KeyboardInterrupt:
+        print(Fore.RED + '\n\nPrograma interrompido pelo usuário!')
+        break
+
+print(Fore.GREEN + 'Obrigado por utilizar o PATOLA!')
+print(Fore.GREEN + 'Até mais!')

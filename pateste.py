@@ -1,6 +1,5 @@
 from os import system
 from colorama import init, Fore, Back, Style
-from getpass import getpass
 import stdiomask
 from time import sleep
 init(autoreset=True)
@@ -33,6 +32,24 @@ def buscar_usuario(login, senha):
                         username = usuario[0]
                         password = usuario[1]
                         if login == username and senha == password:
+                            return True
+                        
+    except FileNotFoundError:
+        return False
+
+    return False
+
+
+def buscar_usuario_cadastro(login):
+    try:
+        with open('usuarios.txt', 'r', encoding='utf-8') as arquivo_usuarios:
+            for linha in arquivo_usuarios:
+                linha = linha.strip()
+                if linha:
+                    usuario = linha.split()
+                    if len(usuario) == 2:
+                        username = usuario[0]
+                        if login == username:
                             return True
                         
     except FileNotFoundError:
