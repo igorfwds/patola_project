@@ -1,0 +1,8 @@
+{'emprego': 'A', 'genero_musical': 'forro', 'nome_da_banda': 'forrozeiros', 'bio': 'rkfnoslf', 'link': 'yt.com'}
+{'emprego': 'A', 'genero_musical': 'Afrobeat', 'integrantes_da_banda': 'Endrick Magalhães', 'nome_da_banda': 'Capivaras de Fogo', 'bio': 'Capivaras pegando fogo sinistramente não tem como.', 'link': 'PROVISÓRIO.com'}
+{'emprego': 'A', 'genero_musical': 'forró', 'integrantes_da_banda': 'igor, jow,henrique', 'nome_da_banda': 'kkk', 'bio': 'ggg', 'link': 'yt.com'}
+{'emprego': 'A', 'genero_musical': 'rock', 'integrantes_da_banda': 'claudio, cardozo', 'nome_da_banda': 'loucos de cueca', 'bio': 'loucos de cueca', 'link': 'yt.com'}
+{'emprego': 'A', 'genero_musical': 'asc', 'integrantes_da_banda': 'as', 'nome_da_banda': 'sac', 'bio': 'cac', 'link': 'asc'}
+{'emprego': 'A', 'genero_musical': 'metal', 'integrantes_da_banda': 'geysa, jow, cardozo, mata e henrique', 'nome_da_banda': 'Banda podre', 'bio': 'ola', 'link': 'youtube.com'}
+{'emprego': 'C', 'genero_musical': 'metal hard core', 'nome_do_estabelecimento': 'clara lover', 'nome_do_contratante': 'clara', 'endereco': 'rua cesar'}
+{'emprego': 'C', 'genero_musical': 'forró', 'nome_do_estabelecimento': 'Capital do forró', 'nome_do_contratante': 'Igor Wanderley', 'endereco': 'rua cesar'}
