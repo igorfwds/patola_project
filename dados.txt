@@ -1,2 +1,0 @@
-{'emprego': 'A', 'genero_musical': 'dd', 'integrantes_da_banda': 'gg', 'nome_da_banda': 'ola', 'bio': 'rr', 'link': 'rr'}
-{'emprego': 'C', 'genero_musical': 'kjhggh', 'nome_do_estabelecimento': 'kjjhgh', 'nome_do_contratante': 'lucia', 'endereco': 'kjhghjj'}
