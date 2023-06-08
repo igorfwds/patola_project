@@ -1,0 +1,3 @@
+{'login': 'igor', 'nome_do_estabelecimento': 'Capital Do Forro', 'nome_do_contratante': 'Igor Wanderley', 'emprego': 'Contratante', 'genero_musical': ['FORRÓ', ' SERTANEJO'], 'endereco': 'Rua Cesar,222'}
+{'login': 'mata', 'emprego': 'Artista', 'nome_da_banda': 'Forrozeiros Do Seu Cesar', 'integrantes_da_banda': 'Igor, Jow, Cardozo E Henrique', 'genero_musical': ['FORRÓ'], 'bio': 'viemos alegrar sua festa!', 'link': 'youtube.com/forrozeiros-do-seu-cesar'}
+{'login': 'lucia', 'nome_do_estabelecimento': 'Lucia Wanderley Recepções', 'nome_do_contratante': 'Lucia Helena', 'emprego': 'Contratante', 'genero_musical': ['FORRÓ', 'GOSPEL'], 'endereco': 'Rua Da Torre,322'}
