@@ -88,6 +88,7 @@ def artistas_indecisos(login):
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'integrantes_da_banda':
@@ -97,6 +98,7 @@ def artistas_indecisos(login):
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'nome_da_banda':
@@ -106,6 +108,7 @@ def artistas_indecisos(login):
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'bio':
@@ -115,16 +118,17 @@ def artistas_indecisos(login):
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'link':
                                 ask = input("Você deseja alterar as informações sobre o link? (S/N) ").upper()
                                 if ask == "S":
                                     dicionario[chave] = input('Digite as informações sobre o link atualizadas: ').upper().strip()
-                                    dicionario[chave]
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
 
@@ -159,6 +163,7 @@ def contratantes_indecisos(login):
                                     dicionario[chave] = input('Digite as informações sobre o gênero atualizadas: ').upper().strip().split(",")
                                     break
                                 elif ask == "N":
+                                    dicionario[chave]
                                     break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
@@ -168,6 +173,7 @@ def contratantes_indecisos(login):
                                     dicionario[chave] = input('Digite as informações sobre o nome do estabelecimento atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
+                                    dicionario[chave]
                                     break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
@@ -177,6 +183,7 @@ def contratantes_indecisos(login):
                                     dicionario[chave] = input('Digite as informações sobre o nome do contratante atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
+                                    dicionario[chave]
                                     break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
@@ -186,6 +193,7 @@ def contratantes_indecisos(login):
                                     dicionario[chave] = input('Digite as informações sobre o endereço atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
+                                    dicionario[chave]
                                     break
                                 else:
                                     print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
@@ -274,7 +282,7 @@ print(Fore.GREEN + '''==========================================================
 ======================================================================''')
 dados = []
 while True:
-    
+    try:
         opcao = exibir_menu_principal()
         if opcao == 1:  # login
             login, senha = fazer_login()
@@ -371,3 +379,5 @@ while True:
         else:
             print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
     
+    except:
+        print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
