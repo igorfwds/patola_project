@@ -1,4 +1,5 @@
 # Manual do Usuário - PATOLA
+![Patola Laranja 1 0 (20230502012039)](https://github.com/igorfwds/patola_project/assets/106282239/26a78837-0afe-4a5f-9eac-82573390fafd)
 
 Bem-vindo ao Manual do Usuário do PATOLA! - Sistema de Oportunidades Musicais
 
