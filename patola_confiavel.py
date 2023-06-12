@@ -66,7 +66,6 @@ def menu_pos_login():
     return resposta
 
 
-
 def artistas_indecisos(login):
     emprego_usuario_logado = obter_emprego_por_login(login)
     try:
@@ -82,52 +81,111 @@ def artistas_indecisos(login):
                     if chave not in ('login', 'emprego'):
                         while True:
                             if chave == 'genero_musical':
-                                ask = input("Você deseja alterar as informações sobre o gênero musical? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre o gênero musical? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre o gênero musical atualizadas: ').upper().strip().split(",")
+                                    
+                                    lista_generos()
+                                    genero_musical = []
+                                    try:
+                                        while True:
+                                            genero_repetido = input(Fore.YELLOW + '\n O gênero da sua banda se encontra nessa lista de gêneros já cadastrados?\n[S/N]'
+                                                                    '\nConfira na lista acima:\n').upper()
+                                            
+                                            if genero_repetido == 'S':
+                                                while True:
+                                                    print(
+                                                        Fore.YELLOW + 'Indique o gênero que você deseja adicionar.')
+                                                    genero_adicionado = int(
+                                                        input('Gênero a adicionar (digite apenas seu número):\n')) - 1
+                                                    genero_musical.append(
+                                                        generos[genero_adicionado].upper())
+                                                    dicionario[chave]=genero_musical
+                                                    repetir = input(
+                                                        Fore.YELLOW + '\nDeseja adicionar mais um gênero?`\n[S/N]\n').upper()
+                                                    if repetir not in ['S', 'N']:
+                                                        raise ValueError
+                                                    if repetir == 'N':
+                                                        break
+                                                break
+                                            elif genero_repetido == 'N':
+                                                while True:
+                                                    genero_musical.append(
+                                                        input(Fore.YELLOW + 'Insira o gênero do seu som:\n').strip().upper())
+                                                    dicionario[chave]=genero_musical
+                                                    repetir = input(
+                                                        '\nDeseja adicionar mais um gênero? [S/N]').upper()
+                                                    if repetir not in ['S', 'N']:
+                                                        raise ValueError
+                                                    if repetir == 'N':
+                                                        break
+                                                break
+                                            else :
+                                                print(
+                                                    '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
+                                    except :
+                                        print(
+                                            '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'integrantes_da_banda':
-                                ask = input("Você deseja alterar as informações sobre os integrantes da banda? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre os integrantes da banda? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre os integrantes da banda atualizadas: ').title().strip()
+                                    dicionario[chave] = input(
+                                        'Digite as informações sobre os integrantes da banda atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'nome_da_banda':
-                                ask = input("Você deseja alterar as informações sobre o nome da banda? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre o nome da banda? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre o nome da banda atualizadas: ').title().strip()
+                                    dicionario[chave] = input(
+                                        'Digite as informações sobre o nome da banda atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'bio':
-                                ask = input("Você deseja alterar as informações sobre a bio? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre a bio? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre a bio atualizadas: ').upper().strip()
+                                    dicionario[chave] = input(
+                                        'Digite as informações sobre a bio atualizadas: ').upper().strip()
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'link':
-                                ask = input("Você deseja alterar as informações sobre o link? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre o link? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre o link atualizadas: ').upper().strip()
+                                    dicionario[chave] = input(
+                                        'Digite as informações sobre o link atualizadas: ').upper().strip()
                                     dicionario[chave]
                                     break
                                 elif ask == "N":
                                     dicionario[chave]
+                                    break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
-
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
             dados_atualizados.append(dicionario)
 
         with open('dados.txt', 'w', encoding='utf-8') as arquivo_dados:
@@ -136,7 +194,6 @@ def artistas_indecisos(login):
 
     except FileNotFoundError:
         print(Fore.RED + "O arquivo 'dados.txt' não foi encontrado." + Fore.RESET)
-
 
 
 def contratantes_indecisos(login):
@@ -154,41 +211,92 @@ def contratantes_indecisos(login):
                     if chave not in ('login', 'emprego'):
                         while True:
                             if chave == 'genero_musical':
-                                ask = input("Você deseja alterar as informações sobre o gênero? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre o gênero musical? \n(S/N) \n").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre o gênero atualizadas: ').upper().strip().split(",")
+                                    lista_generos()
+                                    genero_musical = []
+                                    try:
+                                        while True:
+                                            genero_repetido = input(Fore.YELLOW + '\n  O gênero musical desejado em seu estabelecimento se encontra nessa lista de gêneros já cadastrados? \n[S/N]'
+                                                                    '\nConfira na lista acima:\n').upper()
+                                            
+                                            if genero_repetido == 'S':
+                                                while True:
+                                                    print(
+                                                        Fore.YELLOW + 'Indique o gênero que você deseja adicionar.')
+                                                    genero_adicionado = int(
+                                                        input('Gênero a adicionar (digite apenas seu número):\n')) - 1
+                                                    genero_musical.append(
+                                                        generos[genero_adicionado].upper())
+                                                    dicionario[chave]=genero_musical
+                                                    repetir = input(
+                                                        Fore.YELLOW + '\nDeseja adicionar mais um gênero? \n[S/N]\n').upper()
+                                                    if repetir not in ['S', 'N']:
+                                                        raise ValueError
+                                                    if repetir == 'N':
+                                                        break
+                                                break
+                                            elif genero_repetido == 'N':
+                                                while True:
+                                                    genero_musical.append(
+                                                        input(Fore.YELLOW + 'Insira  o gênero musical desejado em seu estabelecimento:\n').strip().upper())
+                                                    dicionario[chave]=genero_musical
+                                                    repetir = input(
+                                                        '\nDeseja adicionar mais um gênero musical? \n[S/N]\n').upper()
+                                                    if repetir not in ['S', 'N']:
+                                                        raise ValueError
+                                                    if repetir == 'N':
+                                                        break
+                                                break
+                                            else :
+                                                print(
+                                                    '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
+                                    except :
+                                        print(
+                                            '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
                                     break
                                 elif ask == "N":
                                     break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'nome_do_estabelecimento':
-                                ask = input("Você deseja alterar as informações sobre o nome do estabelecimento? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre o nome do estabelecimento? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre o nome do estabelecimento atualizadas: ').title().strip()
+                                    dicionario[chave] = input(
+                                        'Digite as informações sobre o nome do estabelecimento atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
                                     break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'nome_do_contratante':
-                                ask = input("Você deseja alterar as informações sobre o nome do contratante? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre o nome do contratante? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre o nome do contratante atualizadas: ').title().strip()
+                                    dicionario[chave] = input(
+                                        'Digite as informações sobre o nome do contratante atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
                                     break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
                             elif chave == 'endereco':
-                                ask = input("Você deseja alterar as informações sobre o endereço? (S/N) ").upper()
+                                ask = input(
+                                    "Você deseja alterar as informações sobre o endereço? (S/N) ").upper()
                                 if ask == "S":
-                                    dicionario[chave] = input('Digite as informações sobre o endereço atualizadas: ').title().strip()
+                                    dicionario[chave] = input(
+                                        'Digite as informações sobre o endereço atualizadas: ').title().strip()
                                     break
                                 elif ask == "N":
                                     break
                                 else:
-                                    print(Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
+                                    print(
+                                        Fore.RED + 'ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]' + Fore.RESET)
 
             dados_atualizados.append(dicionario)
 
@@ -200,18 +308,18 @@ def contratantes_indecisos(login):
         print(Fore.RED + "O arquivo 'dados.txt' não foi encontrado." + Fore.RESET)
 
 
-
-
-def adicionar_dados_artista(login, emprego, nome_da_banda, integrantes_da_banda, genero_musical,bio, link):
-    dado = {'login': login, 'emprego': emprego, 'nome_da_banda': nome_da_banda, 'integrantes_da_banda': integrantes_da_banda, 'genero_musical': genero_musical, 'bio': bio, 'link': link}
+def adicionar_dados_artista(login, emprego, nome_da_banda, integrantes_da_banda, genero_musical, bio, link):
+    dado = {'login': login, 'emprego': emprego, 'nome_da_banda': nome_da_banda,
+            'integrantes_da_banda': integrantes_da_banda, 'genero_musical': genero_musical, 'bio': bio, 'link': link}
     dados.append(dado)
     arquivo_dados = open('dados.txt', 'a', encoding='utf8')
     arquivo_dados.write(str(dado) + '\n')
     arquivo_dados.close()
 
 
-def adicionar_dados_contratante(login, nome_do_estabelecimento, nome_do_contratante, emprego,genero_musical, endereco):
-    dado = {'login': login, 'nome_do_estabelecimento': nome_do_estabelecimento, 'nome_do_contratante': nome_do_contratante, 'emprego': emprego, 'genero_musical': genero_musical, 'endereco': endereco}
+def adicionar_dados_contratante(login, nome_do_estabelecimento, nome_do_contratante, emprego, genero_musical, endereco):
+    dado = {'login': login, 'nome_do_estabelecimento': nome_do_estabelecimento, 'nome_do_contratante':
+            nome_do_contratante, 'emprego': emprego, 'genero_musical': genero_musical, 'endereco': endereco}
     arquivo_dados = open('dados.txt', 'a', encoding='utf8')
     arquivo_dados.write(str(dado) + '\n')
     arquivo_dados.close()
@@ -221,12 +329,25 @@ def obter_emprego_por_login(login):
     try:
         with open('dados.txt', 'r', encoding='utf-8') as arquivo_dados:
             for linha in arquivo_dados:
-                dicionario = eval(linha)  
+                dicionario = eval(linha)
                 if dicionario.get('login') == login:
                     return dicionario.get('emprego')
     except FileNotFoundError:
         print("O arquivo 'dados.txt' não foi encontrado.")
     return None
+
+
+def lista_generos():
+    for banda in dados:
+        for genero in banda['genero_musical']:
+            if genero not in generos:
+                generos.append(genero)
+    if 'Outros' in generos:
+        generos.remove('Outros')
+    generos.append('Outros')
+    print('Gêneros:\n')
+    for indice, genero in enumerate(generos):
+        print(f'[{indice+1}] {genero}')
 
 
 def varredura_de_oportunidades(genero_musical_desejado, login):
@@ -239,7 +360,7 @@ def varredura_de_oportunidades(genero_musical_desejado, login):
     try:
         with open('dados.txt', 'r', encoding='utf-8') as arquivo_dados:
             for linha in arquivo_dados:
-                dicionario = eval(linha)  
+                dicionario = eval(linha)
                 genero_musical = dicionario.get('genero_musical')
 
                 # Verificar se o usuário atual é um artista
@@ -268,13 +389,15 @@ def varredura_de_oportunidades(genero_musical_desejado, login):
         print(Fore.RED + "O arquivo 'dados.txt' não foi encontrado.")
 
 
-
 print(Fore.GREEN + '''======================================================================
                     Bem-vindo ao PATOLA!
 ======================================================================''')
 dados = []
+generos = ['Alternativo', 'Axé', 'Bossa Nova', 'Brega',
+           'Clássica', 'Eletrônica', 'Hip Hop/Rap', 'Indie',
+           'Pop', 'Reggae', 'Rock', 'Forró']
 while True:
-    
+    try:
         opcao = exibir_menu_principal()
         if opcao == 1:  # login
             login, senha = fazer_login()
@@ -285,24 +408,38 @@ while True:
                 print()
                 sleep(1)
                 while True:
-                    
-                        resposta = menu_pos_login()
-                        sleep(1)
-                        if resposta == 1:  # [1] Realizar varredura de oportunidades
-                            genero_musical_desejado = input("Digite o gênero musical desejado: ").upper()
-                            login_usuario_logado = login
-                            varredura_de_oportunidades(genero_musical_desejado, login_usuario_logado)
-                        elif resposta == 2:  # [2] Alterar dados Cadastrados
-                            print(Fore.RED + "PROVISÓRIO")
-                            artistas_indecisos(login)
-                            contratantes_indecisos(login)
-                            print(Fore.RED + "\nAlterando cadastros...\n")
+
+                    resposta = menu_pos_login()
+                    sleep(1)
+                    if resposta == 1:  # [1] Realizar varredura de oportunidades
+                        login_usuario_logado = login
+                        lista_generos()
+                        genero_musical = []
+                        try:
+                            while True:
+                                print(Fore.YELLOW + 'Confira na lista acima:\n')
+                                print(Fore.YELLOW + 'Indique o gênero que você deseja encontrar boas oportunidades:\t')
+                                
+                                genero_adicionado = int(
+                                    input('Escolha o gênero musical que mais se adequa à sua demanda (digite apenas seu número):\n')) - 1
+                                genero_musical_desejado = generos[genero_adicionado].upper()
+                                break
                             
-                        elif resposta == 3:  # [3] Logout
-                            break
-                        else:
-                            print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
-                    
+                            varredura_de_oportunidades(genero_musical_desejado, login_usuario_logado)
+                        except :
+                            print(
+                                        Fore.RED+'\n\nCertifique-se de que você digitou apenas os numeros da lista de gêneros musicais.\n\n')
+                    elif resposta == 2:  # [2] Alterar dados Cadastrados
+                        print(Fore.RED + "PROVISÓRIO")
+                        artistas_indecisos(login)
+                        contratantes_indecisos(login)
+                        print(Fore.RED + "\nAlterando cadastros...\n")
+
+                    elif resposta == 3:  # [3] Logout
+                        break
+                    else:
+                        print(
+                            Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
 
             else:
                 print(Fore.RED + 'Usuário ou senha incorretos!')
@@ -311,9 +448,10 @@ while True:
             login, senha = fazer_login()
             user = buscar_usuario(login, senha)
             if login == "" or senha == "":
-                print(Fore.RED + 'Usuário ou senha incorretos!\nCertifique-se de digitar um usuario e uma senha.')
+                print(
+                    Fore.RED + 'Usuário ou senha incorretos!\nCertifique-se de digitar um usuario e uma senha.')
                 sleep(2)
-                
+
             elif user == True:
                 print()
                 print(Fore.RED + 'O Usuário já existe!')
@@ -323,51 +461,143 @@ while True:
                 with open('usuarios.txt', 'a+', encoding='Utf_8', newline='') as arquivo_usuarios:
                     arquivo_usuarios.writelines(f'{login} {senha}\n')
                     while True:
-                        emprego = input(Fore.YELLOW + 'Você é [A] artista ou [C] contratante?\t').upper()
+                        emprego = input(
+                            Fore.YELLOW + 'Você é [A] artista ou [C] contratante?\t').upper()
                         if emprego == "A":
                             emprego = "Artista"
-                            nome_da_banda = input(Fore.YELLOW + 'Qual o nome da sua banda ?\t').title()
+                            nome_da_banda = input(
+                                Fore.YELLOW + 'Qual o nome da sua banda ?\t').title()
 
-                            genero_musical = input(Fore.YELLOW + 'Qual genero musical sua banda toca?\n'+Fore.RED+'ATENÇÃO!\nUtilize apenas vírgula(,) para listar os generos se for mais de um.\n\t').upper().strip().split(",")
+                            lista_generos()
+                            genero_musical = []
+                            try:
+                                while True:
+                                    genero_repetido = input(Fore.YELLOW + '\n O gênero musical da sua banda se encontra nessa lista de gêneros já cadastrados?\n[S/N]'
+                                                            '\nConfira na lista acima:\n').upper()
+                                    
+                                    if genero_repetido == 'S':
+                                        while True:
+                                            print(
+                                                Fore.YELLOW + 'Indique o gênero que você deseja adicionar.')
+                                            genero_adicionado = int(
+                                                input('Gênero a adicionar (digite apenas seu número):\n')) - 1
+                                            genero_musical.append(
+                                                generos[genero_adicionado])
+                                            repetir = input(
+                                                Fore.YELLOW + '\nDeseja adicionar mais um gênero? \n[S/N]\n').upper()
+                                            if repetir not in ['S', 'N']:
+                                                raise ValueError
+                                            if repetir == 'N':
+                                                break
+                                        break
+                                    if genero_repetido == 'N':
+                                        while True:
+                                            genero_musical.append(
+                                                input(Fore.YELLOW + 'Insira o gênero do seu som:\n').strip().upper())
+                                            repetir = input(
+                                                '\nDeseja adicionar mais um gênero? \n[S/N]').upper()
+                                            if repetir not in ['S', 'N']:
+                                                raise ValueError
+                                            if repetir == 'N':
+                                                break
+                                        break
+                                    else :
+                                        print(
+                                            '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
+                            except :
+                                print(
+                                    '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
 
-                            integrantes_da_banda = input(Fore.YELLOW + 'Defina os integrantes da banda incluindo você:\t').title()
+                            integrantes_da_banda = input(
+                                Fore.YELLOW + 'Defina os integrantes da banda incluindo você:\t').title()
 
-                            bio = input(Fore.YELLOW + 'Deixe uma breve biografia:\t')
+                            bio = input(
+                                Fore.YELLOW + 'Deixe uma breve biografia:\t')
 
-                            link = input(Fore.YELLOW + 'Deixe um link com uma demo dos seus talentos:\t')
+                            link = input(
+                                Fore.YELLOW + 'Deixe um link com uma demo dos seus talentos:\t')
 
-                            adicionar_dados_artista(login, emprego, nome_da_banda, integrantes_da_banda, genero_musical,bio, link)
+                            adicionar_dados_artista(
+                                login, emprego, nome_da_banda, integrantes_da_banda, genero_musical, bio, link)
                             break
                         elif emprego == "C":
                             emprego = "Contratante"
-                            nome_do_contratante = input(Fore.YELLOW + 'Qual o seu nome ?\t').title()
+                            nome_do_contratante = input(
+                                Fore.YELLOW + 'Qual o seu nome ?\t').title()
 
-                            nome_do_estabelecimento = input(Fore.YELLOW + 'Qual o nome do seu estabelecimento ?\t').title()
+                            nome_do_estabelecimento = input(
+                                Fore.YELLOW + 'Qual o nome do seu estabelecimento ?\t').title()
 
-                            genero_musical = input(Fore.YELLOW + 'Qual o genero musical que você está procurando para o seu estabelecimento ?\n'+Fore.RED+'ATENÇÃO!\nUtilize apenas vírgula(,) para listar os generos se for mais de um.\n\t').upper().strip().split(",")
+                            lista_generos()
+                            genero_musical = []
+                            try:
+                                while True:
+                                    genero_repetido = input(Fore.YELLOW + '\n O gênero musical desejado em seu estabelecimento se encontra nessa lista de gêneros já cadastrados?\n[S/N]'
+                                                            '\nConfira na lista acima:\n').upper()
+                                    
+                                    if genero_repetido == 'S':
+                                        while True:
+                                            print(
+                                                Fore.YELLOW + 'Indique o gênero musical que você deseja adicionar.')
+                                            genero_adicionado = int(
+                                                input('Gênero musical a adicionar (digite apenas seu número):\n')) - 1
+                                            genero_musical.append(
+                                                generos[genero_adicionado])
+                                            repetir = input(
+                                                Fore.YELLOW + '\nDeseja adicionar mais um gênero musical? \n[S/N]\n').upper()
+                                            if repetir not in ['S', 'N']:
+                                                raise ValueError
+                                            if repetir == 'N':
+                                                break
+                                        break
+                                    if genero_repetido == 'N':
+                                        while True:
+                                            genero_musical.append(
+                                                input(Fore.YELLOW + 'Insira o gênero musical desejado em seu estabelecimento:\n').strip().upper())
+                                            repetir = input(
+                                                '\nDeseja adicionar mais um gênero musical? \n[S/N]\n').upper()
+                                            if repetir not in ['S', 'N']:
+                                                raise ValueError
+                                            if repetir == 'N':
+                                                break
+                                        break
+                                    else :
+                                        print(
+                                            '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
+                            except :
+                                print(
+                                    '\n\nCertifique-se de que você digitou apenas [S] ou [N].\n\n')
 
-                            endereco = input(Fore.YELLOW + 'Informe seu endereço:\t').title()
+                            endereco = input(
+                                Fore.YELLOW + 'Informe seu endereço:\t').title()
 
-                            adicionar_dados_contratante(login, nome_do_estabelecimento, nome_do_contratante, emprego,genero_musical, endereco)
+                            adicionar_dados_contratante(
+                                login, nome_do_estabelecimento, nome_do_contratante, emprego, genero_musical, endereco)
                             break
                         else:
-                            print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [A] ou [C]''')
+                            print(
+                                Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [A] ou [C]''')
 
                     print(Fore.CYAN + 'Cadastro aprovado!')
                     sleep(1)
 
         elif opcao == 3:  # Sair
             print((Fore.BLUE + "Tas indo pra onde?\n\nJá tô com saudade..."))
-            saida = input(Fore.BLUE + "Digite [S] para sim e [N] para  não:\t").upper()
+            saida = input(
+                Fore.BLUE + "Digite [S] para sim e [N] para  não:\t").upper()
             if saida == "N":
                 pass
             elif saida == "S":
                 print(Fore.GREEN + '''======================================================================
-                Obrigado por usar o PATOLA!
-    ======================================================================''')
+                    Obrigado por usar o PATOLA!
+        ======================================================================''')
                 break
             else:
-                print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]''')
+                print(
+                    Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [S] ou [N]''')
         else:
-            print(Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
-    
+            print(
+                Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')
+    except:
+        print(
+            Fore.RED + '''ATENÇÃO!\nFavor verificar o que foi digitado, só são aceitas as seguintes respostas: [1], [2] ou [3]''')

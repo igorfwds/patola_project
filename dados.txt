@@ -1,3 +1,5 @@
 {'login': 'igor', 'nome_do_estabelecimento': 'Capital Do Forró', 'nome_do_contratante': 'Igor Wanderley', 'emprego': 'Contratante', 'genero_musical': ['FORRÓ', ' SERTANEJO'], 'endereco': 'Rua Do Forró,333'}
 {'login': 'mata', 'emprego': 'Artista', 'nome_da_banda': 'Forrozeiros', 'integrantes_da_banda': 'Igor, Jow, Henrique E Cardozo', 'genero_musical': ['FORRÓ'], 'bio': 'viemos alegrar sua festa!', 'link': 'youtube.com/forrozeiros-do-seu-cesar'}
 {'login': 'djas', 'emprego': 'Artista', 'nome_da_banda': 'Zqueiros Do Hawai', 'integrantes_da_banda': 'Djas E Mata', 'genero_musical': ['FORRÓ', 'GOSPEL'], 'bio': 'um duo louco para pegar radiante', 'link': 'vava.com'}
+{'login': 'millinhaborba', 'nome_do_estabelecimento': 'Imusic', 'nome_do_contratante': 'Camilla', 'emprego': 'Contratante', 'genero_musical': ['GOSPEL', ' FORRO'], 'endereco': 'Rua Jose Bonifacio'}
+{'login': 'henrique', 'emprego': 'Artista', 'nome_da_banda': 'Henriquers', 'integrantes_da_banda': 'Henrique, Cardozo E Mata', 'genero_musical': ['HEAVY METAL', 'MPB'], 'bio': 'UHUL', 'link': 'YT.COM'}
